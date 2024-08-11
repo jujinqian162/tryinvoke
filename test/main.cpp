@@ -1,5 +1,4 @@
 
-#include "cout.hpp"
 #include "gtest/gtest.h"
 #include "tryinvoke.h"
 #include <array>
