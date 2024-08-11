@@ -62,16 +62,21 @@ inline constexpr Void_t void_t;
 
 } // namespace ju
 
-struct try_invoker {
+struct __try_invoker {
     template <typename F, typename... Args>
     requires std::invocable<F>
     constexpr decltype(auto) _try_invoke(F&& func, const ju::Void_t,
                                          Args&&... args) const {
         return func();
     }
+    template<typename T>
+    struct false_type{
+        static constexpr bool value = false;
+    };
+
     template <typename F>
     constexpr decltype(auto) _try_invoke(F&& func) const {
-        static_assert(std::false_type::value, "connot invoke function");
+        static_assert(false_type<F>::value , "connot invoke function");
     }
 
     template <typename F, typename Fst, typename... Args>
@@ -119,6 +124,6 @@ struct try_invoker {
     }
 };
 
-inline constexpr try_invoker try_invoke{};
+inline constexpr __try_invoker try_invoke{};
 
 #endif

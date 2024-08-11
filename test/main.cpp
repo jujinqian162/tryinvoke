@@ -59,3 +59,9 @@ TEST(tuple_assertion, assert) {
     static_assert(concepts::tuple_like<std::pair<int, int>>);
     static_assert(concepts::tuple_like<std::array<int, 4>>);
 }
+
+TEST(false_invoke, invoke){
+    auto f = []{ return 3;};
+    // try_invoke(f, 3);
+    // connot complie
+}
