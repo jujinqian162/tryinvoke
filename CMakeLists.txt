@@ -24,5 +24,5 @@ enable_testing()
 add_subdirectory(test)
 
 #main
-add_executable(${PROJECT_NAME} main.cpp)
-add_custom_target(run COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
+# add_executable(${PROJECT_NAME} main.cpp)
+# add_custom_target(run COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
