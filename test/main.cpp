@@ -26,7 +26,7 @@ TEST(tupleinvoke, invoke) {
     auto res3 = try_invoke(f3, 3.4, void_t, std::pair{4, 2.3}, 3, 4);
     static_assert(concepts::tuple_like<std::pair<int, int>>);
     auto res4 = try_invoke(f3, 3.4, std::tuple{3, 5, 2}, std::tuple{410, 2.3},
-                           std::pair{3, 5.6}, 4);
+                           std::pair{410, 5.6}, 4);
     auto res5 =
         try_invoke(f1, std::tuple{std::pair{3, 4}, 4}, std::tuple{4, 5.6}, 5);
     
