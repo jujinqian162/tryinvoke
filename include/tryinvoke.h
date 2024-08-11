@@ -55,47 +55,6 @@ concept applyable = requires(F&& fun, T&& tp) {
     { detail::apply(s forward<F>(fun), s forward<T>(tp)) };
 };
 } // namespace concepts
-// namespace detail {
-// template <typename F, typename T, typename... Args>
-// requires concepts::applyable<s decay_t<F>, s decay_t<T>>
-// constexpr decltype(auto) tuple_invoke(F&& func, T&& tuple, Args&&... args) {
-//     return ju::detail::apply(s forward<F>(func), s forward<T>(tuple));
-// } // has copy
-// template <typename F, typename T, typename... Args>
-// requires(!concepts::applyable<s decay_t<F>, s decay_t<T>>)
-// constexpr decltype(auto) tuple_invoke(F&& func, T&& tuple, Args&&... args) {
-//     return try_invoke(s forward<F>(func), s forward<Args>(args)...);
-// } // has copy
-
-// template <typename F>
-// requires std::invocable<F>
-// decltype(auto) try_invoke(F&& func, ju::Void_t) {
-//     return func();
-// } // has copy
-
-// template <typename F>
-// decltype(auto) try_invoke(F&& func) {
-//     static_assert(std::false_type::value, "connot invoke function");
-// } // has copy
-
-// template <typename F, typename Fst, typename... Args>
-// decltype(auto) try_invoke(F&& func, Fst&& first, Args&&... args) {
-//     if constexpr (std::invocable<F, Fst&&>) {
-//         return func(std::forward<Fst>(first));
-//     } else {
-//         return try_invoke(std::forward<F>(func),
-//         std::forward<Args>(args)...);
-//     }
-// } // has copy
-
-// template <typename F, typename Fst, typename... Args>
-// requires concepts::is_tuple<std::decay_t<Fst>>
-// decltype(auto) try_invoke(F&& func, Fst&& first, Args&&... args) {
-//     return detail::tuple_invoke(s forward<F>(func), s forward<Fst>(first),
-//                                 s forward<Args>(args)...);
-// } // has copy
-
-// } // namespace detail
 
 // use for empty argument invoke
 struct Void_t {};
