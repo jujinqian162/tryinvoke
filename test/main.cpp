@@ -8,7 +8,7 @@ using namespace ju;
 TEST(voidinvoke, invoke) {
     int local{4};
     auto f = [] { return 1; };
-    auto f2 = [&]-> int&{ return local; };
+    auto f2 = [&]()-> int& { return local; };
     static_assert(std::is_lvalue_reference_v<decltype(try_invoke(f2, void_t))>);
     ASSERT_EQ(try_invoke(f, void_t), 1);
     ASSERT_EQ(try_invoke(f, 3, 4, void_t), 1);
